@@ -2,8 +2,15 @@
     <button
         :style="btnStyles"
         class="btn">
-      <span
-        :class="`fas fa-${icon}`" />
+      <!-- icon -->
+        <span
+            v-if="icon"
+            :class="`${iconSet} ${icon}`" />
+
+        <!-- text -->
+        <span
+            v-if="text"
+            v-text="text" />
     </button>
   </template>
   
@@ -12,8 +19,7 @@
     name: 'ButtonItem',
     props: {
         icon: {
-            type: String,
-            required: true
+            type: String
         },
         fontSize: {
             type: Number,
@@ -26,6 +32,13 @@
         movement: {
             type: Number,
             default: 0.5
+        },
+        iconSet: {
+            type: String,
+            default: 'fas'
+        },
+        text: {
+            type: String
         }
     },
     computed: {
