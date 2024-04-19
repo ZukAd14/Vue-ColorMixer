@@ -8,9 +8,10 @@
       <!-- menu -->
       <AppMenu />
 
-      <!-- color mixin -->
-      <color-mixin />
-
+      <!-- router view -->
+       <slide-fade-animation>
+        <router-view />
+      </slide-fade-animation>
     </div>
   </div>
 </template>
@@ -20,22 +21,19 @@ import './styles/global.scss'
 import AppHeader from './components/AppHeader'
 import ColorMixin from './components/ColorMixin'
 import AppMenu from './components/AppMenu'
+import SlideFadeAnimation from './components/shared/SlideFadeAnimation.vue'
 
 export default {
   name: 'App',
   components: {
     AppHeader,
     ColorMixin,
-    AppMenu
+    AppMenu,
+    SlideFadeAnimation
   }
 }
 </script>
 
 <style lang="scss">
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-  padding: 2rem;
-}
+   @import '@/styles/_variables'
 </style>

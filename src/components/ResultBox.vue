@@ -13,6 +13,8 @@
       :style="{ margin: '3rem auto' }"
       :color="mixtureEffectFill" />
 
+    <p>RGB ({{ mixtures[0].amount * 2.5 }}, {{ mixtures[1].amount * 2.5 }}, {{ mixtures[2].amount * 2.5 }})</p>
+
     <!-- refresh & info btn -->
     <button-item
       @click="$emit('refresh')"
@@ -29,7 +31,17 @@
     icon="pi pi-question-circle"
     :style="{ margin: '20px' }"/>
 
+    <router-link :to="colorLink">
+      <button-item
+        :size="4"
+        :font-size="1.5"
+        icon="pi pi-share-alt"
+        />
+    </router-link>
+
+
     <!-- modal -->
+    <fade-animation>
     <modal-item
       v-if="modalVisible"
       @cancel="modalVisible = false">
@@ -47,6 +59,7 @@
       </template>
 
     </modal-item>
+  </fade-animation>
   </div>
 </template>
 
@@ -55,6 +68,7 @@ import modalMixin from '../mixins/ModalMixin';
 import ButtonItem from './shared/ButtonItem.vue';
 import FlaskItem from './shared/FlaskItem.vue';
 import ModalItem from './shared/modalItem.vue';
+import FadeAnimation from './shared/FadeAnimation';
 
 export default {
   name: 'ResultsBox',
@@ -68,6 +82,10 @@ export default {
     mixtureEffectFill () {
       const [redCol, greenCol, blueCol] = this.mixtures.map(item => Math.floor(item.amount * 2.5))
       return   `rgb(${redCol},${greenCol},${blueCol})`
+    },
+    colorLink () {
+      const [redCol, greenCol, blueCol] = this.mixtures.map(item => Math.floor(item.amount * 2.5))
+      return   `/color/${redCol}/${greenCol}/${blueCol}`
     }
   },
   methods: {
@@ -78,7 +96,8 @@ export default {
   components: {
     FlaskItem,
     ButtonItem,
-    ModalItem
+    ModalItem,
+    FadeAnimation
   },
   mixins: 
     [modalMixin]

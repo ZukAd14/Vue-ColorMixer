@@ -30,11 +30,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.mixtures {
-  list-style-type: none;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 0;
-}
+   @import '@/styles/_variables'
 </style>

@@ -16,14 +16,17 @@
             {
             label: 'Home',
             icon: 'pi pi-home',
+            url: '/'
             },
             {
             label: 'Mixin',
             icon: 'pi pi-sliders-h',
+            url: '/mixin'
             },
             {
             label: 'About',
             icon: 'pi pi-info-circle',
+            url: '/about'
             }
         ]
         }
@@ -31,10 +34,6 @@
   }
   </script>
   
-  <style scoped>
-  .menuBar {
-    border-radius: 1rem;
-    box-shadow: 0 20px 40px 0 rgba(107,154,212,.3);
-    overflow: hidden;
-  }
+  <style lang="scss" scoped>
+    @import '@/styles/_variables'
   </style>
