@@ -14,6 +14,13 @@
     <div
         :class="fillClasses"
         :style="fillStyle" />
+        <!-- remove btn-->
+    <button-item
+      v-if="removeButtonVisible"
+      class="flask__btn flask__btn--center"
+      icon="pi pi-trash"
+      :movement="-0.5"
+      @click="zoomIn(); $emit('remove')" />
 
     <!-- increment btn -->
     <button-item
@@ -22,7 +29,9 @@
         icon="pi pi-angle-double-up"
         :movement="-0.5"
         @click="zoomIn(); $emit('increment')" />
-        </div>
+
+    
+    </div>
 </template>
 
 <script>
@@ -48,6 +57,10 @@ export default {
     buttonsVisible: {
       type: Boolean,
       default: true
+    },
+    removeButtonVisible: {
+      type: Boolean,
+      default: false
     }
   },
   data() {

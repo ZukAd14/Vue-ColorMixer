@@ -9,12 +9,13 @@
     <flask-item
       :size="15"
       :amount="100"
+      :removeButtonVisible= false
       :buttonsVisible = false
       :style="{ margin: '3rem auto' }"
       :color="mixtureEffectFill" />
 
     <p>RGB ({{ mixtures[0].amount * 2.5 }}, {{ mixtures[1].amount * 2.5 }}, {{ mixtures[2].amount * 2.5 }})</p>
-
+    <p>There are {{ colorsLength }} colors in your pocket!</p>
     <!-- refresh & info btn -->
     <button-item
       @click="$emit('refresh')"
@@ -39,6 +40,15 @@
         />
     </router-link>
 
+    
+      <button-item 
+      @click="saveColor"
+      :size="4"
+      :font-size="1.5"
+      icon="pi pi-pen-to-square"
+      :style="{ margin: '20px' }"
+      />
+    
 
     <!-- modal -->
     <fade-animation>
@@ -69,16 +79,13 @@ import ButtonItem from './shared/ButtonItem.vue';
 import FlaskItem from './shared/FlaskItem.vue';
 import ModalItem from './shared/modalItem.vue';
 import FadeAnimation from './shared/FadeAnimation';
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'ResultsBox',
-  props: {
-    mixtures: {
-      type: Array,
-      required: true
-    }
-  },
+  
   computed: {
+    ...mapGetters({ colorsLength: 'stateLength', mixtures: 'Mixtures' }),
     mixtureEffectFill () {
       const [redCol, greenCol, blueCol] = this.mixtures.map(item => Math.floor(item.amount * 2.5))
       return   `rgb(${redCol},${greenCol},${blueCol})`
@@ -86,11 +93,15 @@ export default {
     colorLink () {
       const [redCol, greenCol, blueCol] = this.mixtures.map(item => Math.floor(item.amount * 2.5))
       return   `/color/${redCol}/${greenCol}/${blueCol}`
-    }
+    },
   },
   methods: {
+    ...mapActions(['addColor']),
     openModal() {
       this.modalVisible = true;
+    },
+    saveColor () {
+      this.addColor(this.mixtures)
     }
   },
   components: {
@@ -104,5 +115,3 @@ export default {
   
 }
 </script>
-
-

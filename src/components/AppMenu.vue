@@ -27,6 +27,11 @@
             label: 'About',
             icon: 'pi pi-info-circle',
             url: '/about'
+            },
+            {
+            label: 'My Colors',
+            icon: 'pi pi-star',
+            url: '/my-colors'
             }
         ]
         }

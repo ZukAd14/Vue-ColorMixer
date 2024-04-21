@@ -12,17 +12,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import FlaskItem from './shared/FlaskItem.vue';
 
 
 export default {
   name: 'Mixtures',
-  props: {
-    mixtures: {
-      type: Array,
-      required: true
-    }
-  },
+  computed: mapGetters({ mixtures: 'Mixtures' }),
   components: {
     FlaskItem
   }
